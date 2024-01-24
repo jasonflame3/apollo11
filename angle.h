@@ -30,7 +30,7 @@ public:
    friend TestLander;
    
    // Constructors
-   Angle()                 : radians(-99.9)  {}
+   Angle()                 : radians()  {}
    Angle(const Angle& rhs) : radians(-99.9)  {}
    Angle(double degrees)   : radians(-99.9)  {}
 
