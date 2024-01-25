@@ -2,9 +2,10 @@
  * Source File:
  *    ANGLE
  * Author:
- *    Br. Helfrich
+ *    Br. Helfrich, Tyler LeFevre and Jason Chandler
  * Summary:
  *    Everything we need to know about a direction
+ *    Source for fmod https://cplusplus.com/reference/cmath/fmod/
  ************************************************************************/
 
 #include "angle.h"
@@ -17,7 +18,10 @@ using namespace std;
   ************************************/
 double Angle::normalize(double radians) const
 {
+   // Use modulus to normalize radians outside of the unit circle.
    radians = fmod (radians, (2 * M_PI));
+   
+   // If radians is a negative add 2 Pi to it.
    if (radians < 0)
    {
       radians += 2 * M_PI;

@@ -2,12 +2,14 @@
  * Header File:
  *    ANGLE
  * Author:
- *    Br. Helfrich
+ *    Br. Helfrich, Tyler LeFevre and Jason Chandler
  * Summary:
  *    Everything we need to know about a direction
  ************************************************************************/
 
 //ticket 1 30 min
+//ticket 2 17 min
+
 
 #pragma once
 
@@ -55,7 +57,7 @@ public:
    }
    void setRadians(double radians) 
    {
-      this->radians = radians;
+      this->radians = normalize(radians);
    }
    void setUp()                   
    {
@@ -77,7 +79,7 @@ public:
    {
       radians += M_PI;
    }
-   Angle& add(double delta) { radians += delta; return *this; }
+   Angle& add(double delta) { radians = normalize(radians + delta); return *this; }
 
 private:
    double normalize(double radians) const;
@@ -90,7 +92,7 @@ private:
    }
    double convertToRadians(double degrees)
    {
-      return (degrees * 2.0 * M_PI) / 360.0;
+      return normalize((degrees * 2.0 * M_PI) / 360.0);
    }
 };
 
