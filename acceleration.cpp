@@ -9,7 +9,6 @@
 
 #include "acceleration.h"
 #include "angle.h"
-
 #include <cmath>
 
 /*********************************************

@@ -15,7 +15,7 @@
   ************************************/
 int main()
 {
-   //does this work
+
    // run the test code.
    testRunner();
 
@@ -25,10 +25,3 @@ int main()
 
 
 
-// Testing
-
-// More testing
-
-// final testing
-
-// stage

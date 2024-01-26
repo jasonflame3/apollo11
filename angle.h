@@ -73,23 +73,28 @@ public:
    }
    void setLeft()                  
    {
-      radians = M_PI * 2.0 - M_PI_2;
+      radians = M_PI + M_PI_2;
    }
    void reverse()
    {
       radians += M_PI;
    }
-   Angle& add(double delta) { radians = normalize(radians + delta); return *this; }
+   Angle& add(double delta) 
+   {
+      radians = normalize(radians + delta); return *this;
+   }
 
 private:
    double normalize(double radians) const;
 
    double radians;   // 360 degrees equals 2 PI radians
    
+   
    double convertToDegrees(double radian) const
    {
       return (360.0 * radians)/(2.0 * M_PI);
    }
+   
    double convertToRadians(double degrees)
    {
       return normalize((degrees * 2.0 * M_PI) / 360.0);
