@@ -15,6 +15,7 @@ using namespace std;
 
  /************************************
   * ANGLE : NORMALIZE
+  * Enforce that radian stays in range 0 - 2pi.
   ************************************/
 double Angle::normalize(double radians) const
 {
