@@ -1,6 +1,6 @@
 /***********************************************************************
  * Source File:
- *    ACCELERATION 
+ *    ACCELERATION
  * Author:
  *    Br. Helfrich, Tyler LeFevre and Jason Chandler
  * Summary:
