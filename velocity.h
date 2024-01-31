@@ -5,6 +5,10 @@
  *    Br. Helfrich
  * Summary:
  *    Everything we need to know about speed
+ * 
+ * ticket 1: 21 minutes
+ * ticket 2:  6 minutes
+ * ticket 3: 
  ************************************************************************/
 
 #pragma once
@@ -32,20 +36,20 @@ class Velocity
    
 public:
    // constructors
-   Velocity()                     : dx(99.9), dy(88.8) { }
-   Velocity(double dx, double dy) : dx(99.9), dy(88.8) { }
+   Velocity()                     : dx(0.0), dy(0.0) { }
+   Velocity(double dx, double dy) : dx(dx), dy(dy) { }
 
    // getters
-   double getDX()       const { return 99.9; }
-   double getDY()       const { return 88.8; }
+   double getDX()       const { return dx; }
+   double getDY()       const { return dy; }
    double getSpeed()    const;
 
    // setters
-   void setDX(double dx) { this->dx = 99.9; }
-   void setDY(double dy) { this->dy = 88.8; }
+   void setDX(double dx) { this->dx = dx; }
+   void setDY(double dy) { this->dy = dy; }
    void set(const Angle & angle, double magnitude);
-   void addDX(double dx) { this->dx = 99.9; }
-   void addDY(double dy) { this->dy = 88.8; }
+   void addDX(double dx) { this->dx += dx; }
+   void addDY(double dy) { this->dy += dy; }
    void add(const Acceleration & acceleration, double time);
 
 private:

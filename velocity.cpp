@@ -12,15 +12,15 @@
 #include "angle.h"
 
 #include <math.h>  // for sqrt()
-
+#include <assert.h> // for asserts
 /*********************************************
  * VELOCITY : ADD
  *  v = v_0 + a t
  *********************************************/
 void Velocity::add(const Acceleration& acceleration, double time)
 {
-   dx = 99.9;
-   dy = 88.8;
+   dx += acceleration.getDDX() * time;
+   dy += acceleration.getDDY() * time;
 }
 
 /*********************************************
@@ -29,7 +29,9 @@ void Velocity::add(const Acceleration& acceleration, double time)
  *********************************************/
 double Velocity::getSpeed() const
 {
-   return -11.1;
+   double speed = sqrt(dx * dx + dy * dy);
+   assert(speed >= 0.0);
+   return speed;
 }
 
 /*********************************************
@@ -38,6 +40,7 @@ double Velocity::getSpeed() const
  *********************************************/
 void Velocity::set(const Angle & angle, double magnitude)
 {
-   dx = 99.9;
-   dy = 88.8;
+   assert(magnitude >= 0.0); // ask brother helfrich
+   dx = sin(angle.getRadians()) * magnitude;
+   dy = cos(angle.getRadians()) * magnitude;
 }
