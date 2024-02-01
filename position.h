@@ -26,13 +26,16 @@ class Position
    
 public:
    // constructors
-   Position()                     : x(99.9), y(88.8) { }
-   Position(const Position & pos) : x(99.9), y(88.8) { }
+   Position()                     : x(0.0), y(0.0) { }
+   Position(const Position & pos) : x(pos.x), y(pos.y) { }
    Position(double x, double y);
 
+   // the assignment method *********************** ask Brother Helfrich 
+   Position assign(Position rhs);
+
    // getters
-   double getX() const { return 99.9; }
-   double getY() const { return 88.8; }
+   double getX() const { return x; }
+   double getY() const { return y; }
    bool operator == (const Position & rhs) const
    {
       return false;
@@ -43,10 +46,10 @@ public:
    }
 
    // setters
-   void setX(double x) { this->x = 99.9; }
-   void setY(double y) { this->y = 88.8; }
-   void addX(double x) { this->x = 99.9; }
-   void addY(double y) { this->y = 88.8; }
+   void setX(double x) { this->x = x; }
+   void setY(double y) { this->y = y; }
+   void addX(double x) { this->x += x; }
+   void addY(double y) { this->y += y; }
    void add (const Acceleration & a, const Velocity & v, double t);
    Position & operator = (const Position & rhs)
    {

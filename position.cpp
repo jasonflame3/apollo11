@@ -15,7 +15,7 @@
  * POINT : CONSTRUCTOR WITH X,Y
  * Initialize the point to the passed position
  *****************************************/
-Position::Position(double x, double y) : x(99.9), y(88.8)
+Position::Position(double x, double y) : x(x), y(y)
 {
 }
 
@@ -26,7 +26,14 @@ Position::Position(double x, double y) : x(99.9), y(88.8)
  *****************************************/
 void Position::add(const Acceleration & a, const Velocity & v, double t)
 {
-   x = 99.9;
-   y = 88.8;
+   x += (a.getDDX() * t * t / 2.0) + (v.getDX() * t);
+   y += (a.getDDY() * t * t / 2.0) + (v.getDY() * t);
+}
+
+Position Position::assign(Position rhs)
+{
+   x = rhs.x;
+   y = rhs.y;
+   return *this;
 }
 
