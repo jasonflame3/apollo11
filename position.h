@@ -53,8 +53,8 @@ public:
    void add (const Acceleration & a, const Velocity & v, double t);
    Position & operator = (const Position & rhs)
    {
-      x = 99.9;
-      y = 88.8;
+      x = rhs.x;
+      y = rhs.y;
       return *this;
    }
 
