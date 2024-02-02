@@ -7,8 +7,11 @@
  *    Everything we need to know about speed
  * 
  * ticket 1: 21 minutes
- * ticket 2:  6 minutes
- * ticket 3: 
+ * ticket 2: 6 minutes
+ * ticket 3: 30 minuites
+ * ticket 4: 5 minuites
+ * ticket 5: 0 minuites
+ * ticket 6: 0 minuites
  ************************************************************************/
 
 #pragma once
