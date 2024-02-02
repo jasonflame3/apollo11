@@ -30,10 +30,4 @@ void Position::add(const Acceleration & a, const Velocity & v, double t)
    y += (a.getDDY() * t * t / 2.0) + (v.getDY() * t);
 }
 
-Position Position::assign(const Position &rhs)
-{
-   x = rhs.x;
-   y = rhs.y;
-   return *this;
-}
 
