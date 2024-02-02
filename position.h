@@ -38,11 +38,11 @@ public:
    double getY() const { return y; }
    bool operator == (const Position & rhs) const
    {
-      return false;
+      return (this->x == rhs.x and this->y == rhs.y);
    }
    bool operator != (const Position & rhs) const
    {
-      return false;
+      return !(this->x == rhs.x and this->y == rhs.y);
    }
 
    // setters
