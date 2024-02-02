@@ -40,7 +40,7 @@ double Velocity::getSpeed() const
  *********************************************/
 void Velocity::set(const Angle & angle, double magnitude)
 {
-   assert(magnitude >= 0.0); // ************************************* ask brother helfrich
+   assert(magnitude >= 0.0); 
    dx = sin(angle.getRadians()) * magnitude;
    dy = cos(angle.getRadians()) * magnitude;
 }

@@ -30,8 +30,8 @@ public:
    Position(const Position & pos) : x(pos.x), y(pos.y) { }
    Position(double x, double y);
 
-   // the assignment method *********************** ask Brother Helfrich 
-   Position assign(Position rhs);
+   // the assignment method 
+   Position assign(const Position &rhs);
 
    // getters
    double getX() const { return x; }
