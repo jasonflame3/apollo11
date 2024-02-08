@@ -2,9 +2,14 @@
  * Header File:
  *    Thrust : Represents activation of thrusters
  * Author:
- *    Br. Helfrich
+ *    Br. Helfrich, jason Chandler Tyler Lefevre
  * Summary:
  *    down, clockwise, and counterclockwise
+ * 
+ *    ticket 1: 45 minuites
+ *    ticket 2: 21 minuites
+ *    ticket 3: 10 minuites
+ *    ticket 4: 25 minuites
  ************************************************************************/
 
 #pragma once
@@ -30,26 +35,44 @@ public:
    // Get rotation in radians per second
    double rotation() const
    {
-      return 99.9;
+      double rotation = 0;
+      if (clockwise)
+      {
+         rotation += 0.1;
+      }
+      
+      if (counterClockwise)
+      {
+         rotation -= 0.1;
+      }
+      
+      return rotation;
    }
 
    // get main engine thrust in  m / s ^ 2
    double mainEngineThrust() const
    {
-      return 99.9;
+      if (mainEngine)
+      {
+         return 45000.0 / 15103.0;
+      }
+      else
+      {
+         return 0;
+      }
    }
 
    // reflect what is firing
-   bool isMain()    const { return true;       }
-   bool isClock()   const { return true;        }
-   bool isCounter() const { return true; }
+   bool isMain()    const { return mainEngine;       }
+   bool isClock()   const { return clockwise;        }
+   bool isCounter() const { return counterClockwise; }
 
    // set the thrusters
    void set(const Interface * pUI)
    {
-      mainEngine       = true;
-      clockwise        = true;
-      counterClockwise = true;
+      mainEngine       = pUI->isDown();
+      clockwise        = pUI->isLeft();
+      counterClockwise = pUI->isRight();
    }
 
 private:

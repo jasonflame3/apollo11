@@ -17,6 +17,23 @@
  *****************************************************/
 class Star
 {
+private:
+   Position pos;
+   unsigned char phase;
 public:
-
+   Star() 
+   {
+      Position pos;
+      phase = 0;
+   }
+   void reset(double width, double height)
+   {
+      pos.setX(random(0.0, width));
+      pos.setY(random(0.0, height));
+   }
+   void draw(ogstream gout)
+   {
+      gout.drawStar(pos, phase);
+      phase++;
+   }
 };
