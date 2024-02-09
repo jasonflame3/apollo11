@@ -47,8 +47,25 @@ void Lander :: draw(const Thrust & thrust, ogstream & gout) const
  ***************************************************************/
 Acceleration Lander :: input(const Thrust& thrust, double gravity)
 {
-   Acceleration accelaration();
-   return Acceleration();
+   double localThrust = 0.0;
+   angle.add(thrust.rotation());
+   if (thrust.isClock() && fuel >= 1.0)
+   {
+      fuel-=1.0;
+   }
+   if (thrust.isCounter() && fuel >= 1.0)
+   {
+      fuel-=1.0;
+   }
+   if (thrust.isMain() && fuel >= 10.0)
+   {
+      fuel -= 10.0;
+      localThrust = thrust.mainEngineThrust();
+   }
+   Acceleration a;
+   a.set(angle, localThrust);
+   a.addDDY(gravity);
+   return a;
 }
 
 /******************************************************************
@@ -58,4 +75,5 @@ Acceleration Lander :: input(const Thrust& thrust, double gravity)
 void Lander :: coast(Acceleration & acceleration, double time)
 {
    pos.add(acceleration, velocity, time);
+   velocity.add(acceleration, time);
 }
