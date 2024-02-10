@@ -23,8 +23,44 @@ using namespace std;
 class Simulator
 {
 public:
-   Simulator(const Position & posUpperRight) : ground(posUpperRight) {}
+   Simulator(const Position & posUpperRight) : ground(posUpperRight) 
+   {
+      lander.reset(posUpperRight);
+      
+      for (Star& star : stars) {
+         star.reset(posUpperRight.getX(), posUpperRight.getY());
+      }
+   }
+
+   void draw(ogstream & gout) 
+   {
+      
+      // draw each star before drawing ground and lander
+      for (auto& star : stars)
+      {
+         star.draw(gout);
+      }
+      
+      ground.draw(gout);
+      lander.draw(thrust, gout);
+   }
+   
+   void getInput(const Interface* pUI)
+   {
+      thrust.set(pUI);
+   }
+   
+   void moveLander()
+   {
+      Acceleration a = lander.input(thrust, -1.62);
+      lander.coast(a, .1);
+   }
+   
+private:
    Ground ground;
+   Lander lander;
+   Thrust thrust;
+   array<Star, 50> stars;
 };
 
 
@@ -41,8 +77,15 @@ void callBack(const Interface* pUI, void* p)
 
    ogstream gout;
 
-   // draw the ground
-   pSimulator->ground.draw(gout);
+   // Get input
+   pSimulator->getInput(pUI);
+   
+   // move the lander
+   pSimulator->moveLander();
+   
+   // draw everything
+   pSimulator->draw(gout);
+   
 }
 
 /*********************************

@@ -2,7 +2,7 @@
  * Header File:
  *    LANDER
  * Author:
- *    Br. Helfrich
+ *    Br. Helfrich, jason Chandler Tyler Lefevre
  * Summary:
  *    All the information about the lunar lander
  ************************************************************************/
@@ -29,6 +29,9 @@ class Lander
    
 public:
   // to create a lander, we need to know something about the board
+   Lander() {
+      
+   }
   Lander(const Position & posUpperRight) : status(PLAYING), fuel(0) {  }
 
   // reset the lander and its position

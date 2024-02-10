@@ -10,6 +10,9 @@
  *    ticket 2: 21 minuites
  *    ticket 3: 10 minuites
  *    ticket 4: 25 minuites
+ *    ticket 5: 1.5 hours
+ *    ticket 6: 30 minutes
+ *    ticket 7: 10 minutes
  ************************************************************************/
 
 #pragma once

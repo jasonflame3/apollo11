@@ -2,7 +2,7 @@
  * Source File:
  *    LANDER
  * Author:
- *    Br. Helfrich
+ *    Br. Helfrich, jason Chandler Tyler Lefevre
  * Summary:
  *    All the information about the lunar lander
  ************************************************************************/
@@ -64,6 +64,7 @@ Acceleration Lander :: input(const Thrust& thrust, double gravity)
    }
    Acceleration a;
    a.set(angle, localThrust);
+   a.setDDX(a.getDDX()*-1);
    a.addDDY(gravity);
    return a;
 }
@@ -74,6 +75,6 @@ Acceleration Lander :: input(const Thrust& thrust, double gravity)
  *******************************************************************/
 void Lander :: coast(Acceleration & acceleration, double time)
 {
-   pos.add(acceleration, velocity, time);
    velocity.add(acceleration, time);
+   pos.add(acceleration, velocity, time);
 }
