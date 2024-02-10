@@ -31,8 +31,9 @@ public:
          star.reset(posUpperRight.getX(), posUpperRight.getY());
       }
    }
-
-   void draw(ogstream & gout) 
+   
+   // Draw everything on the screen
+   void draw(ogstream & gout)
    {
       
       // draw each star before drawing ground and lander
@@ -45,15 +46,17 @@ public:
       lander.draw(thrust, gout);
    }
    
+   // Get the input from the Interface.
    void getInput(const Interface* pUI)
    {
       thrust.set(pUI);
    }
    
+   // Move the lander.
    void moveLander()
    {
-      Acceleration a = lander.input(thrust, -1.62);
-      lander.coast(a, .1);
+      Acceleration a = lander.input(thrust, -1.62); // gravity on the moon is -1.62 m/s^2
+      lander.coast(a, .1); // Time is .1
    }
    
 private:
