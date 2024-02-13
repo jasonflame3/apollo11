@@ -33,7 +33,8 @@ void Lander :: draw(const Thrust & thrust, ogstream & gout) const
 {
    gout.drawLander(pos, angle.getRadians());
    gout.drawLanderFlames(pos, angle.getRadians(), thrust.isMain(), thrust.isClock(), thrust.isCounter());
-
+   
+   // If lander is dead draw the flames
    if (status == DEAD)
    {
       gout.drawLanderFlames(pos, angle.getRadians(),true, true, true);
