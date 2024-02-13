@@ -13,6 +13,8 @@
 #include "test.h"        // for the unit tests
 #include <cmath>         // for SQRT
 #include <cassert>       // for ASSERT
+#include <array>         // for array
+
 using namespace std;
 
 
