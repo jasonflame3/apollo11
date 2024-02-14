@@ -85,6 +85,14 @@ Acceleration Lander :: input(const Thrust& thrust, double gravity)
  *******************************************************************/
 void Lander :: coast(Acceleration & acceleration, double time)
 {
-   velocity.add(acceleration, time);
-   pos.add(acceleration, velocity, time);
+   if (status == PLAYING)
+   {
+      velocity.add(acceleration, time);
+      pos.add(acceleration, velocity, time);
+   }
 }
+
+
+// we are dead. Draw the lander upside down
+
+

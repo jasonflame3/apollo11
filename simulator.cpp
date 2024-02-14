@@ -27,15 +27,14 @@ class Simulator
 public:
    Simulator(const Position & posUpperRight) : ground(posUpperRight) 
    {
+      this->posUpperRight = posUpperRight;
       lander.reset(posUpperRight);
       
-      for (Star& star : stars) {
-         star.reset(posUpperRight.getX(), posUpperRight.getY());
-      }
+      setStars();
    }
    
    // Draw everything on the screen
-   void draw(ogstream & gout)
+   void draw(ogstream & gout, const Thrust & thrust)
    {
       
       // draw each star before drawing ground and lander
@@ -48,23 +47,54 @@ public:
       lander.draw(thrust, gout);
    }
    
-   // Get the input from the Interface.
-   void getInput(const Interface* pUI)
-   {
-      thrust.set(pUI);
-   }
    
    // Move the lander.
-   void moveLander()
+   void moveLander(const Thrust & thrust)
    {
       Acceleration a = lander.input(thrust, -1.62); // gravity on the moon is -1.62 m/s^2
       lander.coast(a, .1); // Time is .1
    }
    
+   // Set the star position and phase
+   void setStars()
+   {
+      for (Star& star : stars) {
+         star.reset(posUpperRight.getX(), posUpperRight.getY());
+      }
+   }
+   // Reset lander ground and stars
+   void reset()
+   {
+      ground.reset();
+      lander.reset(posUpperRight);
+      setStars();
+   }
+   
+   // Check if the lander hits the ground or lands
+   void detectCollisions()
+   {
+      if (ground.hitGround(lander.getPosition(), lander.getWidth()))
+      {
+         lander.crash();
+      }
+      if (ground.onPlatform(lander.getPosition(), lander.getWidth()))
+      {
+         lander.land();
+      }
+      
+      
+      
+      
+      
+   }
+   
+
+   
+   
 private:
+   Position posUpperRight;
    Ground ground;
    Lander lander;
-   Thrust thrust;
    array<Star, 50> stars;
 };
 
@@ -82,14 +112,22 @@ void callBack(const Interface* pUI, void* p)
 
    ogstream gout;
 
-   // Get input
-   pSimulator->getInput(pUI);
+
+   Thrust thrust;
+   thrust.set(pUI);
+   if (pUI->isSpace())
+   {
+      pSimulator->reset();
+   }
    
    // move the lander
-   pSimulator->moveLander();
+   pSimulator->moveLander(thrust);
+   
+   // detect collision
+   pSimulator->detectCollisions();
    
    // draw everything
-   pSimulator->draw(gout);
+   pSimulator->draw(gout,thrust);
    
 }
 
