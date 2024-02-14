@@ -47,11 +47,12 @@ public:
       lander.draw(thrust, gout);
 
       //draw pilot input
-      Position textPosition(10.0,10.0);
+      Position textPosition(10.0,40.0);
       gout.setPosition(textPosition);
-      gout << to_string(lander.getFuel());
-      /*gout.drawText(posUpperRight, toString(lander.getFuel()));*/ //display fuel
-   //   *gout.drawText(posUpperRight, toString(lander.getFuel())); //display fuel
+      gout << "fuel: " << to_string(lander.getFuel()) << endl
+            <<"altitude" << to_string(ground.getElevation(lander.getPosition())) << endl
+            <<"speed: " <<  to_string(lander.getSpeed());
+      
    }
    
    
