@@ -45,6 +45,10 @@ public:
       
       ground.draw(gout);
       lander.draw(thrust, gout);
+
+      //draw pilot input
+      gout.drawText(posUpperRight, toString(lander.getFuel())); //display fuel
+   //   *gout.drawText(posUpperRight, toString(lander.getFuel())); //display fuel
    }
    
    
@@ -81,15 +85,7 @@ public:
       {
          lander.land();
       }
-      
-      
-      
-      
-      
    }
-   
-
-   
    
 private:
    Position posUpperRight;
