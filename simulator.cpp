@@ -85,7 +85,7 @@ public:
       {
          lander.crash();
       }
-      if (ground.onPlatform(lander.getPosition(), lander.getWidth()))
+      if (ground.onPlatform(lander.getPosition(), lander.getWidth()) && lander.getSpeed() <= lander.getMaxSpeed())
       {
          lander.land();
       }
