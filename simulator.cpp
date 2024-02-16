@@ -52,6 +52,27 @@ public:
       gout << "fuel: " << to_string(lander.getFuel()) << endl
             <<"altitude" << to_string(ground.getElevation(lander.getPosition())) << endl
             <<"speed: " <<  to_string(lander.getSpeed());
+
+      //draw the outcome text.
+      if (lander.isFlying() == false) 
+      {
+         //(posUpperRight.getX() / 2)
+         Position textResult( posUpperRight.getX() / 4.0 , posUpperRight.getY() / 3.0);
+         gout.setPosition(textResult);
+
+         if (lander.isDead())
+         {
+            gout << "You died in the cold heart of space." << endl;
+         }
+         else
+         {
+            assert(lander.isLanded());
+            gout << "The eagle has landed." << endl;
+         }
+      }
+      
+
+      
       
    }
    
