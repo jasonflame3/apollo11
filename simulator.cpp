@@ -49,9 +49,9 @@ public:
       //draw pilot input
       Position textPosition(10.0,40.0);
       gout.setPosition(textPosition);
-      gout << "fuel: " << to_string(lander.getFuel()) << endl
-            <<"altitude" << to_string(ground.getElevation(lander.getPosition())) << endl
-            <<"speed: " <<  to_string(lander.getSpeed());
+      gout << "fuel:     " << to_string(lander.getFuel()) << endl
+            <<"altitude: " << to_string(int(ground.getElevation(lander.getPosition()))) << endl
+            <<"speed:    " <<  to_string(int(lander.getSpeed()));
 
       //draw the outcome text.
       if (lander.isFlying() == false) 

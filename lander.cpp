@@ -32,14 +32,18 @@ void Lander :: reset(const Position & posUpperRight)
 void Lander :: draw(const Thrust & thrust, ogstream & gout) const
 {
    gout.drawLander(pos, angle.getRadians());
-   if (fuel >= 10.0)
+   if (status == PLAYING)
    {
-      gout.drawLanderFlames(pos, angle.getRadians(), thrust.isMain(), thrust.isClock(), thrust.isCounter());
+      if (fuel >= 10.0)
+      {
+         gout.drawLanderFlames(pos, angle.getRadians(), thrust.isMain(), thrust.isClock(), thrust.isCounter());
+      }
+      else if (fuel >= 1.0)
+      {
+         gout.drawLanderFlames(pos, angle.getRadians(), false, thrust.isClock(), thrust.isCounter());
+      }
    }
-   else if (fuel >= 1.0)
-   {
-      gout.drawLanderFlames(pos, angle.getRadians(), false, thrust.isClock(), thrust.isCounter());
-   }
+
    // If lander is dead draw the flames
    if (status == DEAD)
    {
@@ -54,6 +58,11 @@ void Lander :: draw(const Thrust & thrust, ogstream & gout) const
  ***************************************************************/
 Acceleration Lander :: input(const Thrust& thrust, double gravity)
 {
+   Acceleration a;
+   if (status != PLAYING)
+   {
+      return a;
+   }
    double localThrust = 0.0;
    if (fuel > 0.0)
    {
@@ -72,7 +81,6 @@ Acceleration Lander :: input(const Thrust& thrust, double gravity)
       fuel -= 10.0;
       localThrust = thrust.mainEngineThrust();
    }
-   Acceleration a;
    a.set(angle, localThrust);
    a.setDDX(a.getDDX()*-1);
    a.addDDY(gravity);
