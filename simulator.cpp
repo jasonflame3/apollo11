@@ -14,6 +14,7 @@
 #include <cmath>         // for SQRT
 #include <cassert>       // for ASSERT
 #include <array>         // for array
+#include <iomanip>      // for formatting
 
 using namespace std;
 
@@ -49,9 +50,9 @@ public:
       //draw pilot input
       Position textPosition(10.0,40.0);
       gout.setPosition(textPosition);
-      gout << "fuel:     " << to_string(lander.getFuel()) << endl
-            <<"altitude: " << to_string(int(ground.getElevation(lander.getPosition()))) << endl
-            <<"speed:    " <<  to_string(int(lander.getSpeed()));
+      gout << "fuel:      " << lander.getFuel() << " lbs" << endl
+            <<"altitude: " << int(ground.getElevation(lander.getPosition())) << " meters" << endl
+            <<"speed:   " << fixed << setprecision(2) << lander.getSpeed() << " m/s";
 
       //draw the outcome text.
       if (lander.isFlying() == false) 
