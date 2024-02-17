@@ -31,7 +31,10 @@ void Lander :: reset(const Position & posUpperRight)
  ***************************************************************/
 void Lander :: draw(const Thrust & thrust, ogstream & gout) const
 {
+   // draws the lander
    gout.drawLander(pos, angle.getRadians());
+   
+   // Cannot draw the flames if landed
    if (status == PLAYING)
    {
       if (fuel >= 10.0)

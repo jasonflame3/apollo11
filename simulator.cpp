@@ -14,8 +14,7 @@
 #include <cmath>         // for SQRT
 #include <cassert>       // for ASSERT
 #include <array>         // for array
-#include <iomanip>      // for formatting
-
+#include <iomanip>       // for fixed and setprecision
 using namespace std;
 
 
@@ -47,7 +46,7 @@ public:
       ground.draw(gout);
       lander.draw(thrust, gout);
 
-      //draw pilot input
+      //draw pilot info bottom left so it soesn't get in the way of the lander
       Position textPosition(10.0,40.0);
       gout.setPosition(textPosition);
       gout << "fuel:      " << lander.getFuel() << " lbs" << endl
@@ -57,7 +56,6 @@ public:
       //draw the outcome text.
       if (lander.isFlying() == false) 
       {
-         //(posUpperRight.getX() / 2)
          Position textResult( posUpperRight.getX() / 4.0 , posUpperRight.getY() / 3.0);
          gout.setPosition(textResult);
 
@@ -70,19 +68,13 @@ public:
             assert(lander.isLanded());
             gout << "The eagle has landed." << endl;
          }
-      }
-      
-
-      
-      
    }
-   
    
    // Move the lander.
    void moveLander(const Thrust & thrust)
    {
       Acceleration a = lander.input(thrust, -1.62); // gravity on the moon is -1.62 m/s^2
-      lander.coast(a, .1); // Time is .1
+      lander.coast(a, .1); // Time for each frame is .1
    }
    
    // Set the star position and phase

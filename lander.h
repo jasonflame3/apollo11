@@ -45,7 +45,7 @@ public:
   double   getSpeed()       const { return velocity.getSpeed(); }
   int      getFuel()        const { return int(fuel);  }
   int      getWidth()       const { return 20;   }
-  double   getMaxSpeed()    const { return 4.0; }
+  double   getMaxSpeed()    const { return 4.0;  }
 
   // draw the lander on the screen
   void draw(const Thrust & thrust, ogstream & gout) const;
