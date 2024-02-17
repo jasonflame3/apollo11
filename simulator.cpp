@@ -28,9 +28,7 @@ public:
    Simulator(const Position & posUpperRight) : ground(posUpperRight) 
    {
       this->posUpperRight = posUpperRight;
-      lander.reset(posUpperRight);
-      
-      setStars();
+      reset();
    }
    
    // Draw everything on the screen
@@ -68,7 +66,9 @@ public:
             assert(lander.isLanded());
             gout << "The eagle has landed." << endl;
          }
+      }
    }
+   
    
    // Move the lander.
    void moveLander(const Thrust & thrust)
@@ -84,6 +84,7 @@ public:
          star.reset(posUpperRight.getX(), posUpperRight.getY());
       }
    }
+   
    // Reset lander ground and stars
    void reset()
    {
@@ -99,6 +100,7 @@ public:
       {
          lander.crash();
       }
+      // Cannot land when faster than max speed
       if (ground.onPlatform(lander.getPosition(), lander.getWidth()) && lander.getSpeed() <= lander.getMaxSpeed())
       {
          lander.land();
@@ -126,9 +128,9 @@ void callBack(const Interface* pUI, void* p)
 
    ogstream gout;
 
-
    Thrust thrust;
    thrust.set(pUI);
+   
    if (pUI->isSpace())
    {
       pSimulator->reset();
